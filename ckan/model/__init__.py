@@ -210,6 +210,8 @@ class Repository():
             warnings.filterwarnings('ignore', '.*(reflection|tsvector).*')
             meta.metadata.reflect()
 
+        if "spatial_ref_sys" in meta.metadata.tables:
+            meta.metadata.remove(meta.metadata.tables["spatial_ref_sys"])
         meta.metadata.drop_all()
         self.tables_created_and_initialised = False
         log.info('Database tables dropped')
