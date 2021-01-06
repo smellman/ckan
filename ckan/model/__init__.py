@@ -249,8 +249,6 @@ class Repository():
         for table in tables:
             if table.name == 'alembic_version':
                 continue
-            if table.name == 'harvest_object_extra':
-                continue
             connection.execute('delete from "%s"' % table.name)
         self.session.commit()
         log.info('Database table data deleted')
